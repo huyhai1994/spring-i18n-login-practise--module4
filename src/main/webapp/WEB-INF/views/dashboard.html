@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<!--TODO: Bản địa hóa dựa trên session
+        - Hãy tiếp tục bản địa hóa trang dashboard hay một trang khác trong dự án.-->
+
+<!--TODO: - Sau đó kiểm tra lại để thấy rằng việc bản địa hóa
+            vẫn tiếp tục được diễn ra mà không cần tới tham số lang trên tất cả các request.
+            Đó là vì ở đây đang sử dụng LocalResolver và một SessionLocaleResolver.-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{dashboard.title}"></title>
+</head>
+<body>
+<h1 th:text="#{dashboard.heading}"></h1>
+<span th:text="#{dashboard.greeting}"></span>
+<span th:text="${user.username}"></span>
+</body>
+</html>
