@@ -118,8 +118,11 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     }
 
     /*TODO: Buoc 5
-     *  - Khai báo cấu hình bean messageSource, ở đây là mã mẫu khi khai báo bằng annotation trong file cấu hình bằng java.*/
-    /*TODO: - Trong đó, giá trị "message" chính là tên file trong file message.properties.*/
+     *  - Khai báo cấu hình bean messageSource,
+     *  ở đây là mã mẫu khi khai báo bằng annotation
+     * trong file cấu hình bằng java.*/
+    /*TODO: - Trong đó, giá trị "message"
+       chính là tên file trong file message.properties.*/
     @Bean
     public MessageSource messageSource() {
         ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
@@ -128,8 +131,10 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
         return messageSource;
     }
 
-    /*TODO: Buoc 6 - Trong file cấu hình AppConfiguration, cấu hình để bổ sung LocaleChangeInterceptor:
-     * - Interceptor này sẽ tự động phân tích tham số lang đi kèm các request để xác định bản địa hiện tại.*/
+    /*TODO: Buoc 6 - Trong file cấu hình AppConfiguration,
+       cấu hình để bổ sung LocaleChangeInterceptor:
+     * - Interceptor này sẽ tự động phân tích
+        tham số lang đi kèm các request để xác định bản địa hiện tại.*/
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
@@ -137,7 +142,16 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
         registry.addInterceptor(interceptor);
     }
 
-    /*TODO: Buoc 6 - Tiếp theo, bổ sung bean localeResolver để sử dụng thông tin về bản địa và sử dụng message bundle tương ứng:*/
+    @Override
+    public void addResourceHandlers(org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
+        registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/resources/static/");
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
+    }
+
+    /*TODO: Buoc 6 - Tiếp theo, bổ sung bean
+       localeResolver để sử dụng thông tin
+        về bản địa và sử dụng message bundle tương ứng:*/
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
